@@ -74,28 +74,74 @@ var total = 0;
 // Exercise 1
 function buy(id) {
     // 1. Loop for to the array products to get the item to add to cart
-    // 2. Add found product to the cartList array
+
+    for(let i=0; i<products.length; i++){
+        if(id == products[i].id){
+            cartList.push(products[i]); // 2. Add found product to the cartList array
+            
+        
+        }
+    }
+    
+
 }
 
 // Exercise 2
 function cleanCart() {
-
+  cartList=[];
 }
 
 // Exercise 3
 function calculateTotal() {
     // Calculate total price of the cart using the "cartList" array
+ for (i=0; i<cartList.length; i++){
+  total += cartList[i].price;
+ }
+  return total;
+
 }
 
 // Exercise 4
 function generateCart() {
     // Using the "cartlist" array that contains all the items in the shopping cart, 
     // generate the "cart" array that does not contain repeated items, instead each item of this array "cart" shows the quantity of product.
+
+    for (var i=0; i< cartList.length; i++){
+    let encontradoI = false;
+      for(var j=0; j<cart.length; j++){
+         if(cartList[i].id === cart[j].id){
+                encontradoI = true;
+                cart[j].quantity += 1;
+         }
+        }
+    if(!encontradoI) {
+        cart.push(cartList[i]);
+        cart[cart.length -1].quantity =1; 
+    }
+    }
+   
 }
+  
+ 
+
 
 // Exercise 5
 function applyPromotionsCart() {
     // Apply promotions to each item in the array "cart"
+
+    for(var j=0; j<cart.length; j++){
+        if (cart[j].id===1 && cart[j].quantity >=3){
+            oilOfferPrice= 10;
+            cart[j].discount=cart[j].quantity * OilOfferPrice;
+            
+        } else if (cart[j].id===3 && cart[j].quantity >=10){
+            cupCakePrice = Math.ceil(cart[j].price * (2/3));
+            cart[j].discount=cart[j].quantity * cupCakePrice;
+           
+        }
+       
+    }
+    console.log(cart)
 }
 
 
@@ -106,6 +152,14 @@ function addToCart(id) {
     // Refactor previous code in order to simplify it 
     // 1. Loop for to the array products to get the item to add to cart
     // 2. Add found product to the cart array or update its quantity in case it has been added previously.
+  /*function addtocart(a) {
+  cart.push(products[a]);
+  if (products[a] == cart[a]) {
+    alert("already in cart");
+  }
+  displaycart();
+}*/
+
 }
 
 // Exercise 8
